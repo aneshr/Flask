@@ -13,10 +13,6 @@ app.config['SQLACLCHEMY_TRACK_MODIFICATION'] = False
 app.secret_key = "secretkey"
 api = Api(app)
 
-@app.before_first_request #run method before first request.
-def create_table():
-    db.create_all()
-
 jwt = JWT(app, authenticate, identity) # create new endpoint /auth
 # using flask restful we need not use jsonify as it does that for us behind the scene.
 api.add_resource(Store, '/store/<string:name>')
